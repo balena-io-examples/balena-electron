@@ -1,0 +1,40 @@
+ARG NODEJS_VERSION="14"
+
+# If we specify BALENA_MACHINE_NAME, when we do a 'balena push', it will automatically substitute the machine type into our variable, so that you can build it for more than one architecture.
+FROM balenalib/%%BALENA_MACHINE_NAME%%-node:${NODEJS_VERSION}-run
+
+RUN install_packages \
+    curl \
+    libasound2 \
+    libdrm2 \
+    libgbm1 \
+    libgdk-pixbuf2.0-0 \
+    libglib2.0-0 \
+    libgtk-3-0 \
+    libnss3 \
+    libx11-xcb1 \
+    libxss1 \
+    libxtst6 \
+    libgles2-mesa \
+    libxshmfence1 \
+    mesa-utils \
+    mesa-utils-extra
+
+WORKDIR /opt
+
+# Copy package files
+COPY package.json package-lock.json /opt/
+# Install node dependencies
+RUN JOBS=MAX npm install --unsafe-perm --production && npm cache clean --force && rm -rf /root/.cache/*
+
+# Now that we are done NPM installing, copy everything else
+COPY ./src /opt/
+
+# We are running our entrypoint commands through the start.sh script, because we need to do a couple more things outside of just run electron
+CMD ["bash", "/opt/start.sh"]
+
+ENV NODE_ENV=production \
+    # this is specific for balena, to let the startup script know we want to use all udev devices (mouse, keyboard, etc)
+    UDEV=1 \
+    # this is very important, we need to tell our environment that we are going to talk to display 0, which is hosted by the xserver block
+    DISPLAY=:0

@@ -1,0 +1,22 @@
+name: balena-electron
+type: sw.application
+version: 1.0.0
+joinable: false
+description: >-
+  A simple example of how to get an Electron application running on Balena
+assets:
+  repository:
+    type: blob.asset
+    data:
+      url: 'https://github.com/balena-io-examples/balena-electron'
+data:
+  applicationConfigVariables:
+    - RESIN_HOST_CONFIG_gpu_mem: 128
+  defaultDeviceType: "intel-nuc"
+  supportedDeviceTypes:
+    - raspberry-pi
+    - raspberry-pi2
+    - raspberrypi3
+    - raspberrypi4-64
+    - fincm3
+    - intel-nuc

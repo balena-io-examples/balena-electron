@@ -1,0 +1,20 @@
+version: '2.1'
+volumes:
+    # we create a shared volume so that the xserver can mount its socket file, and our application container will be able to use it to display
+    xserver:
+services:
+  balena-electron:
+    build: .
+    restart: always
+    network_mode: host
+    ports:
+      - 8080:8080
+    volumes:
+      - 'xserver:/tmp/.X11-unix'
+    # shm_size: '2gb'
+  xserver:
+    image: balenablocks/xserver
+    restart: always
+    privileged: true
+    volumes:
+      - 'xserver:/tmp/.X11-unix'
