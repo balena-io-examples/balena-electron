@@ -13,7 +13,6 @@ This is a very simple, barebones example of how to get an electron app running o
 version: '2.1'
 volumes:
     # we create a shared volume so that the xserver can mount its socket file, and our application container will be able to use it to display
-    data:
     xserver:
 services:
   balena-electron-example:
@@ -23,7 +22,6 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - 'data:/data/'
       - 'xserver:/tmp/.X11-unix'
     shm_size: '2gb'
   xserver:
