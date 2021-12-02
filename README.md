@@ -7,7 +7,7 @@ This is a very simple, barebones example of how to get an electron app running o
 - The second piece is the [xserver](https://github.com/balenablocks/xserver) block, which starts up an X11 server that your application will use to display on.
   - You can see all the environment variables to configure xserver [here](https://github.com/balenablocks/xserver#environment-variables)
 
-[![balena deploy button](https://www.balena.io/deploy.svg)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/balena-io-examples/balena-electron-example)
+[![balena deploy button](https://www.balena.io/deploy.svg)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/balena-io-examples/balena-electron)
 
 ## Example `docker-compose.yml`
 

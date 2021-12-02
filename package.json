@@ -1,5 +1,5 @@
 {
-  "name": "balena-electron-example",
+  "name": "balena-electron",
   "version": "1.0.0",
   "description": "A simple example of how to get an Electron application running on Balena",
   "main": "src/index.js",
