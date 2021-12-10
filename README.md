@@ -37,3 +37,7 @@ services:
       # We need to specify which display we want to use for the X server. :0 is the first display that we have plugged in. This because there is no default display specified.
       - DISPLAY=:0
 ```
+
+## Build for multiple architectures
+
+There is an example script in this repo which uses `docker buildx` to build and push mutliple architecture images, along with the manifest to a docker repo. See `build-images.sh` for the details.
